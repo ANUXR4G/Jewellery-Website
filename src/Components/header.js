@@ -9,17 +9,22 @@ import {
   PieChartOutlined,
   TeamOutlined,
   UserOutlined,
+  SettingOutlined,
+  DingtalkOutlined,
+  HomeOutlined,
 } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
 
 const { Header, Content, Sider, Footer } = Layout;
 
-
 const items1 = [
-  { key: '1', label: 'Home' },
-  { key: '2', label: 'About us' },
-  { key: '3', label: 'Open Setting' },
-  { key: '4', label: 'Worker Account' },
+  { key: '1', label: 'Home', icon: <HomeOutlined /> },
+  { key: '2', label: 'About us', icon: <DingtalkOutlined />},
+  { key: '3', label: 'Open Setting', icon: <SettingOutlined />},
+  { key: '4', label: 'Worker Account', icon: <UserOutlined />},
+]
+
+const items2 = [
   {
     key: 'sub1',
     icon: React.createElement(GoldOutlined),
@@ -37,9 +42,8 @@ const items1 = [
     icon: React.createElement(RadarChartOutlined),
     label: 'Diamond',
     children: [
-      { key: '6', label: 'option6' },
-      { key: '7', label: 'option7' },
-      { key: '8', label: 'option8' },
+      { key: '6', label: 'Polki' },
+      { key: '7', label: 'Panna' },
     ],
   },
   {
@@ -47,8 +51,8 @@ const items1 = [
     icon: React.createElement(DribbbleOutlined),
     label: 'Stones',
     children: [
-      { key: '9', label: 'Colors Stone' },
-      { key: '10', label: 'Kundan' },
+      { key: '8', label: 'Colors Stone' },
+      { key: '9', label: 'Kundan' },
     ],
   },
   {
@@ -56,8 +60,8 @@ const items1 = [
     icon: React.createElement(RiseOutlined),
     label: 'Stocks',
     children: [
-      { key: '11', label: 'Raw Stocks' },
-      { key: '12', label: 'Ready Stocks' },
+      { key: '10', label: 'Raw Stocks' },
+      { key: '11', label: 'Ready Stocks' },
     ],
   },
 ];
@@ -96,6 +100,7 @@ const Headermain = () => {
       <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
         <div className="demo-logo-vertical" />
         <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items1} />
+        <Menu theme="dark" defaultSelectedKeys={['2']} mode="inline" items={items2} />
       </Sider>
       <Layout>
         <Header
