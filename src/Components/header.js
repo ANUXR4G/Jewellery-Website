@@ -4,25 +4,22 @@ import {
   DribbbleOutlined,
   GoldOutlined,
   RiseOutlined,
-  DesktopOutlined,
-  FileOutlined,
-  PieChartOutlined,
-  TeamOutlined,
   UserOutlined,
   SettingOutlined,
   DingtalkOutlined,
   HomeOutlined,
 } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import { Link } from 'react-router-dom';
 
 const { Header, Content, Sider, Footer } = Layout;
 
 const items1 = [
-  { key: '1', label: 'Home', icon: <HomeOutlined /> },
-  { key: '2', label: 'About us', icon: <DingtalkOutlined />},
-  { key: '3', label: 'Open Setting', icon: <SettingOutlined />},
-  { key: '4', label: 'Worker Account', icon: <UserOutlined />},
-]
+  { key: '1', label: <Link to="/">Home</Link>, icon: <HomeOutlined /> },
+  { key: '2', label: <Link to="/about-us">About us</Link>, icon: <DingtalkOutlined /> },
+  { key: '3', label: <Link to="/settings">Open Setting</Link>, icon: <SettingOutlined /> },
+  { key: '4', label: <Link to="/worker-account">Worker Account</Link>, icon: <UserOutlined /> },
+];
 
 const items2 = [
   {
@@ -30,11 +27,11 @@ const items2 = [
     icon: React.createElement(GoldOutlined),
     label: 'Gold',
     children: [
-      { key: '1', label: '14 Carat' },
-      { key: '2', label: '18 Carat' },
-      { key: '3', label: '22 Carat' },
-      { key: '4', label: 'Raw Gold' },
-      { key: '5', label: 'Fine Fold' },
+      { key: '5', label: '14 Carat' },
+      { key: '6', label: '18 Carat' },
+      { key: '7', label: '22 Carat' },
+      { key: '8', label: 'Raw Gold' },
+      { key: '9', label: 'Fine Fold' },
     ],
   },
   {
@@ -42,8 +39,8 @@ const items2 = [
     icon: React.createElement(RadarChartOutlined),
     label: 'Diamond',
     children: [
-      { key: '6', label: 'Polki' },
-      { key: '7', label: 'Panna' },
+      { key: '10', label: 'Polki' },
+      { key: '11', label: 'Panna' },
     ],
   },
   {
@@ -51,8 +48,8 @@ const items2 = [
     icon: React.createElement(DribbbleOutlined),
     label: 'Stones',
     children: [
-      { key: '8', label: 'Colors Stone' },
-      { key: '9', label: 'Kundan' },
+      { key: '12', label: 'Colors Stone' },
+      { key: '13', label: 'Kundan' },
     ],
   },
   {
@@ -60,36 +57,29 @@ const items2 = [
     icon: React.createElement(RiseOutlined),
     label: 'Stocks',
     children: [
-      { key: '10', label: 'Raw Stocks' },
-      { key: '11', label: 'Ready Stocks' },
+      { key: '14', label: 'Raw Stocks' },
+      { key: '15', label: 'Ready Stocks' },
     ],
   },
 ];
 
-const getItem = (label, key, icon, children) => ({
-  key,
-  icon,
-  children,
-  label,
-});
-
-const items = [
-  getItem('Option 1', '1', <PieChartOutlined />),
-  getItem('Option 2', '2', <DesktopOutlined />),
-  getItem('User', 'sub1', <UserOutlined />, [
-    getItem('Tom', '3'),
-    getItem('Bill', '4'),
-    getItem('Alex', '5'),
-  ]),
-  getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-  getItem('Files', '9', <FileOutlined />),
-];
+const combinedItems = [...items1, ...items2];
 
 const Headermain = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const [openKeys, setOpenKeys] = useState([]);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
+  const onOpenChange = (keys) => {
+    const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
+    if (items2.map((item) => item.key).indexOf(latestOpenKey) === -1) {
+      setOpenKeys(keys);
+    } else {
+      setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
+    }
+  };
 
   return (
     <Layout
@@ -99,8 +89,14 @@ const Headermain = () => {
     >
       <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
         <div className="demo-logo-vertical" />
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items1} />
-        <Menu theme="dark" defaultSelectedKeys={['2']} mode="inline" items={items2} />
+        <Menu
+          theme="dark"
+          defaultSelectedKeys={[]}
+          mode="inline"
+          items={combinedItems}
+          openKeys={openKeys}
+          onOpenChange={onOpenChange}
+        />
       </Sider>
       <Layout>
         <Header
@@ -139,7 +135,7 @@ const Headermain = () => {
             textAlign: 'center',
           }}
         >
-          Ant Design ©{new Date().getFullYear()} Created by Ant UED
+          Ant Design ©{new Date().getFullYear()} Created by Anurag Nanda
         </Footer>
       </Layout>
     </Layout>
