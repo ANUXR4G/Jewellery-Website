@@ -8,9 +8,8 @@ import Headermain from './Components/header';
 const App = () => {
   return (
     <Router>
-      <Headermain />
       <Routes>
-        <Route path="/" element={<Headermain/>} />
+        <Route path="/" element={<Headermain />} />
         {/* <Route path="/about-us" element={<AboutUs />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/worker-account" element={<WorkerAccount />} /> */}

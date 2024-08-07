@@ -17,7 +17,15 @@ const { Header, Content, Sider, Footer } = Layout;
 const items1 = [
   { key: '1', label: <Link to="/">Home</Link>, icon: <HomeOutlined /> },
   { key: '2', label: <Link to="/about-us">About us</Link>, icon: <DingtalkOutlined /> },
-  { key: '3', label: <Link to="/settings">Open Setting</Link>, icon: <SettingOutlined /> },
+  {
+    key: 'sub5',
+    icon: React.createElement(SettingOutlined),
+    label: 'Open Setting',
+    children: [
+      { key: '16', label: 'B2B' },
+      { key: '17', label: 'B2C' },
+    ],
+  },
   { key: '4', label: <Link to="/worker-account">Worker Account</Link>, icon: <UserOutlined /> },
 ];
 
