@@ -1,6 +1,5 @@
 import React from 'react';
 import { Layout, Menu, Dropdown, theme } from 'antd';
-import logo from "../Assets/logo.png";
 const { Header} = Layout;
 
 const nestedDropdownMenu = (
@@ -47,11 +46,9 @@ const Navbar = () => {
         style={{
           display: 'flex',
           alignItems: 'center',
+          flexWrap: 'wrap',
         }}
       >
-        <div className="demo-logo">
-          <img src={logo} alt="Logo" className=' w-32 h-20' />
-        </div>
         <Menu
           theme="dark"
           mode="horizontal"
@@ -59,6 +56,7 @@ const Navbar = () => {
           style={{
             flex: 1,
             minWidth: 0,
+            flexWrap: 'wrap',
           }}
         >
           <Menu.Item key="1">Home</Menu.Item>
