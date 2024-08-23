@@ -1,14 +1,46 @@
 import React from 'react';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
-const { Header, Content, Footer } = Layout;
-const items = new Array(15).fill(null).map((_, index) => ({
-  key: index + 1,
-  label: `nav ${index + 1}`,
-}));
+import { Layout, Menu, Dropdown, theme } from 'antd';
+import logo from "../Assets/logo.png";
+const { Header} = Layout;
+
+const nestedDropdownMenu = (
+  <Menu>
+    <Menu.SubMenu key="b2b" title="B2B">
+      <Menu.SubMenu key="kundan" title="Kundan Meena">
+        <Menu.Item key="kundan1">18 kt</Menu.Item>
+        <Menu.Item key="kundan2">22 kt</Menu.Item>
+      </Menu.SubMenu>
+
+      <Menu.SubMenu key="diamond" title="Diamond Polki">
+        <Menu.Item key="kundan1">18 kt</Menu.Item>
+        <Menu.Item key="kundan2">22 kt</Menu.Item>
+      </Menu.SubMenu>
+      <Menu.SubMenu key="setting" title="Open Setting">
+        <Menu.Item key="kundan1">14 kt</Menu.Item>
+        <Menu.Item key="kundan2">18 kt</Menu.Item>
+        <Menu.Item key="kundan2">22 kt</Menu.Item>
+      </Menu.SubMenu>
+    </Menu.SubMenu>
+    <Menu.SubMenu key="b2c" title="B2C">
+      <Menu.SubMenu key="kundan" title="Kundan Meena">
+        <Menu.Item key="kundan1">18 kt</Menu.Item>
+        <Menu.Item key="kundan2">22 kt</Menu.Item>
+      </Menu.SubMenu>
+      <Menu.SubMenu key="diamond" title="Diamond Polki">
+        <Menu.Item key="kundan1">18 kt</Menu.Item>
+        <Menu.Item key="kundan2">22 kt</Menu.Item>
+      </Menu.SubMenu>
+      <Menu.SubMenu key="setting" title="Open Setting">
+        <Menu.Item key="kundan1">14 kt</Menu.Item>
+        <Menu.Item key="kundan2">18 kt</Menu.Item>
+        <Menu.Item key="kundan2">22 kt</Menu.Item>
+      </Menu.SubMenu>
+    </Menu.SubMenu>
+  </Menu>
+);
+
+
 const Navbar = () => {
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
   return (
     <Layout>
       <Header
@@ -17,51 +49,27 @@ const Navbar = () => {
           alignItems: 'center',
         }}
       >
-        <div className="demo-logo" />
+        <div className="demo-logo">
+          <img src={logo} alt="Logo" className=' w-32 h-20' />
+        </div>
         <Menu
           theme="dark"
           mode="horizontal"
           defaultSelectedKeys={['2']}
-          items={items}
           style={{
             flex: 1,
             minWidth: 0,
           }}
-        />
+        >
+          <Menu.Item key="1">Home</Menu.Item>
+          <Dropdown overlay={nestedDropdownMenu} key="dropdown">
+            <Menu.Item>Ready Items</Menu.Item>
+          </Dropdown>
+          <Menu.Item key="3">Raw Stock / Working Capital</Menu.Item>
+        </Menu>
       </Header>
-      <Content
-        style={{
-          padding: '0 48px',
-        }}
-      >
-        <Breadcrumb
-          style={{
-            margin: '16px 0',
-          }}
-        >
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>List</Breadcrumb.Item>
-          <Breadcrumb.Item>App</Breadcrumb.Item>
-        </Breadcrumb>
-        <div
-          style={{
-            background: colorBgContainer,
-            minHeight: 280,
-            padding: 24,
-            borderRadius: borderRadiusLG,
-          }}
-        >
-          Content
-        </div>
-      </Content>
-      <Footer
-        style={{
-          textAlign: 'center',
-        }}
-      >
-        Ant Design ©{new Date().getFullYear()} Created by Ant UED
-      </Footer>
     </Layout>
   );
 };
+
 export default Navbar;
